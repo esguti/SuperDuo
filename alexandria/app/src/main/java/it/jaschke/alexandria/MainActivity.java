@@ -15,7 +15,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import it.jaschke.alexandria.api.Callback;
 
@@ -149,6 +154,30 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 .addToBackStack("Book Detail")
                 .commit();
 
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        //retrieve scan result
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanningResult != null) {
+            //we have a result
+            String scanContent = scanningResult.getContents();
+            String scanFormat = scanningResult.getFormatName();
+
+            if( scanFormat.equals(BarcodeFormat.EAN_13.name()) ){
+                EditText ean = (EditText) findViewById(R.id.ean);
+                ean.setText(scanContent);
+            }else{
+                Toast toast = Toast.makeText(this,
+                        getString(R.string.add_book_error_format), Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }else{
+            Toast toast = Toast.makeText(this,
+                    getString(R.string.add_book_error), Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     private class MessageReciever extends BroadcastReceiver {
