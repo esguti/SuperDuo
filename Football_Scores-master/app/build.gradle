@@ -12,9 +12,13 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            resValue "string", "FOOTBALLDB_API_KEY", FOOTBALLDB_API_KEY_PROP
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "FOOTBALLDB_API_KEY", FOOTBALLDB_API_KEY_PROP
         }
     }
 }

@@ -1,0 +1,1 @@
+define property FOOTBALLDB_API_KEY_PROP in "gradle.properties" file with "football-data.org" API key 

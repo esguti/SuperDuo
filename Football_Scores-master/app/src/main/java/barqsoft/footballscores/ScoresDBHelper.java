@@ -43,4 +43,5 @@ public class ScoresDBHelper extends SQLiteOpenHelper
         //Remove old values when upgrading.
         db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.SCORES_TABLE);
     }
+
 }
