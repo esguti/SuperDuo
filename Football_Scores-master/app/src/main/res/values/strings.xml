@@ -37,4 +37,5 @@
     <string name="widget_scores_empty">No Data</string>
     <string name="home_crest">Home Team Icon</string>
     <string name="away_crest">Away Team Icon</string>
+    <string name="notknown">Not known League Please report</string>
 </resources>
