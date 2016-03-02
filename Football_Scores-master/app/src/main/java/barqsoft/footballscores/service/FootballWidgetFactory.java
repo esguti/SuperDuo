@@ -44,6 +44,9 @@ public class FootballWidgetFactory implements RemoteViewsService.RemoteViewsFact
             m_cursor.close();
         }
 
+        //Need to start in a thread to avoid permission problem
+        //solution based on:
+        // http://stackoverflow.com/questions/13187284/android-permission-denial-in-widget-remoteviewsfactory-for-content
         Thread thread = new Thread() {
             public void run() {
                 String[] date = new String[1];
